@@ -17,7 +17,7 @@ if [ ! -d $ANDROID_HOME ]; then
 	# https://developer.android.com/studio/index.html#command-tools
 	# The downloaded version below is 26.1.1.:
 	echo "Downloading android sdk..."
-	curl --fail --retry 3 \
+	HTTP_PROXY=http://localhost:1080 curl --fail --retry 3 \
 		-o tools.zip \
 		https://dl.google.com/android/repository/${ANDROID_SDK_FILE}
 	echo "${ANDROID_SDK_SHA256} tools.zip" | sha256sum -c -
@@ -31,7 +31,7 @@ if [ ! -d $NDK ]; then
 	cd $NDK/..
 	rm -Rf $(basename $NDK)
 	echo "Downloading android ndk..."
-	curl --fail --retry 3 -o ndk.zip \
+	HTTP_PROXY=http://localhost:1080 curl --fail --retry 3 -o ndk.zip \
 		https://dl.google.com/android/repository/${ANDROID_NDK_FILE}
 	echo "${ANDROID_NDK_SHA256} ndk.zip" | sha256sum -c -
 	rm -Rf android-ndk-r$TERMUX_NDK_VERSION
