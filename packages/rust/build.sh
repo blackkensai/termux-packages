@@ -3,6 +3,7 @@ TERMUX_PKG_DESCRIPTION="Systems programming language focused on safety, speed an
 TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="Kevin Cotugno @kcotugno"
 TERMUX_PKG_VERSION=1.34.1
+TERMUX_PKG_REVISION=1
 TERMUX_PKG_SHA256=e0efb1e6aba0d4900de57bd2db64e32e7c5b440a95a675d5303839c9a2c3328f
 TERMUX_PKG_SRCURL=https://static.rust-lang.org/dist/rustc-$TERMUX_PKG_VERSION-src.tar.xz
 TERMUX_PKG_DEPENDS="clang, openssl, lld, zlib"
@@ -42,22 +43,18 @@ termux_step_configure() {
 }
 
 termux_step_make() {
-	$TERMUX_PKG_SRCDIR/x.py dist \
-		--host $CARGO_TARGET_NAME \
-		--target $CARGO_TARGET_NAME \
-		--target wasm32-unknown-unknown || bash
+return 0;
 }
 
 termux_step_make_install() {
-	local host_files_to_remove="$TERMUX_PREFIX/lib/rustlib/x86_64-unknown-linux-gnu \
-		$TERMUX_PREFIX/lib/rustlib/manifest-rust-analysis-x86_64-unknown-linux-gnu \
-		$TERMUX_PREFIX/lib/rustlib/manifest-rust-std-x86_64-unknown-linux-gnu"
+	STAGE=""
+	if [ $TERMUX_ARCH = "x86_64"  ]; then
+		STAGE=" --stage 1" ; fi
 
-	$TERMUX_PKG_SRCDIR/x.py install \
+	$TERMUX_PKG_SRCDIR/x.py install $STAGE \
 		--host $CARGO_TARGET_NAME \
 		--target $CARGO_TARGET_NAME \
-		--target wasm32-unknown-unknown && \
-		rm -rf $host_files_to_remove
+		--target wasm32-unknown-unknown
 
 	cd "$TERMUX_PREFIX/lib"
 	ln -sf rustlib/$CARGO_TARGET_NAME/lib/*.so .
