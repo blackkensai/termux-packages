@@ -10,7 +10,7 @@ else
 	REPOROOT="$(dirname $(readlink -f $0))/../"
 fi
 
-IMAGE_NAME=termux/package-builder
+IMAGE_NAME=blackkensai/termux-package-builder
 : ${CONTAINER_NAME:=termux-package-builder}
 
 USER=builder

@@ -36,7 +36,7 @@ if [ ! -d $NDK ]; then
 	# curl --fail --retry 3 -o ndk.zip \
 	# 	https://dl.google.com/android/repository/${ANDROID_NDK_FILE}
 	# HTTP_PROXY=http://localhost:1080 wget -O ndk.zip https://dl.google.com/android/repository/${ANDROID_NDK_FILE}
-	cp /tmp/tools.zip .
+	cp /tmp/ndk.zip .
 	echo "${ANDROID_NDK_SHA256} ndk.zip" | sha256sum -c -
 	rm -Rf android-ndk-r$TERMUX_NDK_VERSION
 	unzip -q ndk.zip
