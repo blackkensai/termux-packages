@@ -10,6 +10,7 @@ else
 	REPOROOT="$(dirname $(readlink -f $0))/../"
 fi
 DATAROOT=$REPOROOT/../data
+NODEROOT="$REPOROOT/../$(ls -1 $DATAROOT/../ |grep node)"
 
 if [ ! -d $DATAROOT ];then
   mkdir $DATAROOT
@@ -29,6 +30,7 @@ docker start $CONTAINER_NAME > /dev/null 2> /dev/null || {
 		--name $CONTAINER_NAME \
 		--volume $REPOROOT:$HOME/termux-packages \
 		--volume $DATAROOT:/data \
+		--volume $NODEROOT:/node \
 		--tty \
 		$IMAGE_NAME
     if [ "$UNAME" != Darwin ]; then
