@@ -1,7 +1,7 @@
 # Build with:
-#	docker build -t termux/package-builder .
+#	docker build -t blackkensai/termux-package-builder .
 # Push to docker hub with:
-#	docker push termux/package-builder
+#	docker push blackkensai/termux-package-builder
 # This is done after changing this file or any of the
 # scripts/setup-{ubuntu,android-sdk}.sh setup scripts.
 FROM ubuntu:19.04
@@ -22,6 +22,7 @@ RUN apt-get update && \
 	echo "builder ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/builder && \
 	chmod 0440 /etc/sudoers.d/builder
 # Needed for setup:
+COPY tools.zip ndk.zip /tmp/
 COPY ./setup-ubuntu.sh ./properties.sh /tmp/
 RUN	su - builder -c /tmp/setup-ubuntu.sh
 COPY ./setup-android-sdk.sh /tmp/
