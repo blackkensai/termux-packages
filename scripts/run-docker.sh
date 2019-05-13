@@ -9,6 +9,11 @@ if [ "$UNAME" = Darwin ]; then
 else
 	REPOROOT="$(dirname $(readlink -f $0))/../"
 fi
+DATAROOT=$REPOROOT/../data
+
+if [ ! -d $DATAROOT ];then
+  mkdir $DATAROOT
+fi
 
 IMAGE_NAME=blackkensai/termux-package-builder
 : ${CONTAINER_NAME:=termux-package-builder}
@@ -23,6 +28,7 @@ docker start $CONTAINER_NAME > /dev/null 2> /dev/null || {
 		--detach \
 		--name $CONTAINER_NAME \
 		--volume $REPOROOT:$HOME/termux-packages \
+		--volume $DATAROOT:/data \
 		--tty \
 		$IMAGE_NAME
     if [ "$UNAME" != Darwin ]; then
