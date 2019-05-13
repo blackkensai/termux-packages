@@ -22,6 +22,7 @@ RUN apt-get update && \
 	echo "builder ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/builder && \
 	chmod 0440 /etc/sudoers.d/builder
 # Needed for setup:
+COPY tools.zip ndk.zip /tmp/
 COPY ./setup-ubuntu.sh ./properties.sh /tmp/
 RUN	su - builder -c /tmp/setup-ubuntu.sh
 COPY ./setup-android-sdk.sh /tmp/
