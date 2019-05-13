@@ -9,3 +9,6 @@ Session.vim
 ### Vagrant ###
 scripts/*.log
 scripts/.vagrant/
+
+tools.zip
+ndk.zip
