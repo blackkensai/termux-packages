@@ -5,7 +5,7 @@ termux_step_start_build() {
 	TERMUX_STANDALONE_TOOLCHAIN="$TERMUX_COMMON_CACHEDIR/${TERMUX_NDK_VERSION}-${TERMUX_ARCH}-${TERMUX_PKG_API_LEVEL}"
 	# Bump the below version if a change is made in toolchain setup to ensure
 	# that everyone gets an updated toolchain:
-	TERMUX_STANDALONE_TOOLCHAIN+="-v4"
+	TERMUX_STANDALONE_TOOLCHAIN+="-v5"
 
 	if [ -n "${TERMUX_PKG_BLACKLISTED_ARCHES:=""}" ] && [ "$TERMUX_PKG_BLACKLISTED_ARCHES" != "${TERMUX_PKG_BLACKLISTED_ARCHES/$TERMUX_ARCH/}" ]; then
 		echo "Skipping building $TERMUX_PKG_NAME for arch $TERMUX_ARCH"
@@ -107,7 +107,7 @@ termux_step_start_build() {
 		 "$TERMUX_PKG_TMPDIR" \
 		 "$TERMUX_PKG_CACHEDIR" \
 		 "$TERMUX_PKG_MASSAGEDIR" \
-		 $TERMUX_PREFIX/{bin,etc,lib,libexec,share,tmp,include}
+		 $TERMUX_PREFIX/{bin,etc,lib,libexec,share,share/LICENSES,tmp,include}
 
 	# Make $TERMUX_PREFIX/bin/sh executable on the builder, so that build
 	# scripts can assume that it works on both builder and host later on:

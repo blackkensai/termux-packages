@@ -2,7 +2,7 @@ TERMUX_PKG_HOMEPAGE=https://clang.llvm.org/
 TERMUX_PKG_DESCRIPTION="Modular compiler and toolchain technologies library"
 TERMUX_PKG_LICENSE="NCSA"
 TERMUX_PKG_VERSION=8.0.0
-TERMUX_PKG_REVISION=3
+TERMUX_PKG_REVISION=4
 TERMUX_PKG_SHA256=(8872be1b12c61450cacc82b3d153eab02be2546ef34fa3580ed14137bb26224c
                    084c115aab0084e63b23eee8c233abb6739c399e29966eaeccfc6e088e0b736b
 		   9caec8ec922e32ffa130f0fb08e4c5a242d7e68ce757631e425e9eba2e1a6e37
@@ -53,6 +53,9 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 TERMUX_PKG_FORCE_CMAKE=yes
 TERMUX_PKG_KEEP_STATIC_LIBRARIES=true
 TERMUX_PKG_HAS_DEBUG=no
+# Debug build succeeds but make install with:
+# cp: cannot stat '../src/projects/openmp/runtime/exports/common.min.50.ompt.optional/include/omp.h': No such file or directory
+# common.min.50.ompt.optional should be common.deb.50.ompt.optional when doing debug build
 
 termux_step_post_extract_package() {
 	mv cfe-${TERMUX_PKG_VERSION}.src tools/clang
