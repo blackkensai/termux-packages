@@ -1,10 +1,11 @@
 TERMUX_PKG_HOMEPAGE=http://e2fsprogs.sourceforge.net
 TERMUX_PKG_DESCRIPTION="EXT 2/3/4 filesystem utilities"
 TERMUX_PKG_LICENSE="GPL-2.0, LGPL-2.0, MIT"
-TERMUX_PKG_MAINTAINER="Leonid Plyushch <leonid.plyushch@gmail.com> @xeffyr"
-TERMUX_PKG_VERSION=1.45.0
-TERMUX_PKG_SHA256=1fa9d0e13f30f1cae9035fe74ed8ad01bfaae99c2c0b9b970318bdb5d738fcd4
+TERMUX_PKG_LICENSE_FILE="NOTICE"
+TERMUX_PKG_MAINTAINER="Leonid Plyushch <leonid.plyushch@gmail.com>"
+TERMUX_PKG_VERSION=1.45.2
 TERMUX_PKG_SRCURL=https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v$TERMUX_PKG_VERSION/e2fsprogs-$TERMUX_PKG_VERSION.tar.xz
+TERMUX_PKG_SHA256=4952c9ae91e36d762e13cc5b9e8f7eeb5453e4aee4cd9b7402e73f2d4e65e009
 TERMUX_PKG_KEEP_STATIC_LIBRARIES=true
 TERMUX_PKG_INCLUDE_IN_DEVPACKAGE="lib/*.a"
 TERMUX_PKG_CONFFILES="etc/mke2fs.conf"
