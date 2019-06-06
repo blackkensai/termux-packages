@@ -14,6 +14,7 @@ TERMUX_PKG_BUILD_IN_SRC=yes
 TERMUX_PKG_CONFLICTS="nodejs"
 
 termux_step_extract_package() {
+	mkdir -p "$TERMUX_PKG_SRCDIR"
 	cp -rv /node/* "$TERMUX_PKG_SRCDIR"
 }
 
